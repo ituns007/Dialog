@@ -14,7 +14,7 @@ public class  Icon {
         this.resId = resId;
     }
 
-    public int resId() {
+    int resId() {
         return resId;
     }
 

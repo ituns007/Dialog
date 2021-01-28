@@ -1,9 +1,10 @@
 package org.ituns.android.dialog;
 
-public enum  Duration {
-    SHORT(2.5f), LONG(3.5f);
+public class Duration {
+    public static final Duration SHORT = new Duration(2.5f);
+    public static final Duration LONG = new Duration(3.5f);
 
-    float duration;
+    private final float duration;
 
     Duration(float duration) {
         this.duration = duration;
@@ -11,5 +12,9 @@ public enum  Duration {
 
     float duration() {
         return duration;
+    }
+
+    public static Duration create(float duration) {
+        return new Duration(duration);
     }
 }

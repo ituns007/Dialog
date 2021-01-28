@@ -6,13 +6,6 @@ public abstract class Dialog {
 
     public abstract void dismiss();
 
-
-
-
-
-
-
-
     public static TipsFactory tips() {
         return new TipsFactory();
     }

@@ -10,16 +10,6 @@ public class TipsFactory {
 
     }
 
-
-
-    public TipsFactory duration(long duration) {
-        return this;
-    }
-
-    public TipsFactory message(String message) {
-        return this;
-    }
-
     public TipsFactory icon(@IdRes int resId) {
         return this;
     }
@@ -28,15 +18,13 @@ public class TipsFactory {
         return this;
     }
 
-    public TipsFactory warning() {
+    public TipsFactory message(String message) {
         return this;
     }
 
-    public TipsFactory error() {
+    public TipsFactory duration(long duration) {
         return this;
     }
-
-
 
 
 
