@@ -1,4 +1,4 @@
-package com.cxgly.dialog;
+package com.ituns.dialog;
 
 import org.junit.Test;
 

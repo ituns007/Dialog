@@ -26,11 +26,6 @@ public class TipsFactory {
         return this;
     }
 
-
-
-
-
-
     public TipsDialog build() {
         return new TipsDialog(this);
     }

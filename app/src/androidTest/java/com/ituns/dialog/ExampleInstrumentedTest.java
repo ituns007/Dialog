@@ -1,4 +1,4 @@
-package com.cxgly.dialog;
+package com.ituns.dialog;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.cxgly.dialog", appContext.getPackageName());
+        assertEquals("com.ituns.dialog", appContext.getPackageName());
     }
 }
