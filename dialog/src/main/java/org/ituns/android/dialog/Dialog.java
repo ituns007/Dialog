@@ -165,9 +165,9 @@ public abstract class Dialog {
         private ConfirmStyle style;
         private String title;
         private String content;
-        private Action negative;
-        private Action neutral;
-        private Action positive;
+        private Button negative;
+        private Button neutral;
+        private Button positive;
         private boolean darkMode;
         private boolean cancelable;
 
@@ -190,17 +190,17 @@ public abstract class Dialog {
             return this;
         }
 
-        public ConfirmBuilder negative(Action negative) {
+        public ConfirmBuilder negative(Button negative) {
             this.negative = negative;
             return this;
         }
 
-        public ConfirmBuilder neutral(Action neutral) {
+        public ConfirmBuilder neutral(Button neutral) {
             this.neutral = neutral;
             return this;
         }
 
-        public ConfirmBuilder positive(Action positive) {
+        public ConfirmBuilder positive(Button positive) {
             this.positive = positive;
             return this;
         }
@@ -233,17 +233,17 @@ public abstract class Dialog {
                 }
 
                 @Override
-                protected Action negative() {
+                protected Button negative() {
                     return negative;
                 }
 
                 @Override
-                protected Action neutral() {
+                protected Button neutral() {
                     return neutral;
                 }
 
                 @Override
-                protected Action positive() {
+                protected Button positive() {
                     return positive;
                 }
 
@@ -266,7 +266,102 @@ public abstract class Dialog {
         }
     }
 
-    public static Dialog input() {
-        return null;
+    public static InputBuilder input(FragmentActivity activity) {
+        return new InputBuilder(activity);
+    }
+
+    public static final class InputBuilder {
+        private FragmentActivity activity;
+        private InputStyle style;
+        private String title;
+        private Button negative;
+        private Button neutral;
+        private Button positive;
+        private boolean darkMode;
+        private boolean cancelable;
+
+        public InputBuilder(FragmentActivity activity) {
+            this.activity = activity;
+        }
+
+        public InputBuilder style(InputStyle style) {
+            this.style = style;
+            return this;
+        }
+
+        public InputBuilder title(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public InputBuilder negative(Button negative) {
+            this.negative = negative;
+            return this;
+        }
+
+        public InputBuilder neutral(Button neutral) {
+            this.neutral = neutral;
+            return this;
+        }
+
+        public InputBuilder positive(Button positive) {
+            this.positive = positive;
+            return this;
+        }
+
+        public InputBuilder darkMode(boolean darkMode) {
+            this.darkMode = darkMode;
+            return this;
+        }
+
+        public InputBuilder cancelable(boolean cancelable) {
+            this.cancelable = cancelable;
+            return this;
+        }
+
+        public Dialog create() {
+            return new InputDialog(activity) {
+                @Override
+                protected InputStyle style() {
+                    return style;
+                }
+
+                @Override
+                protected String title() {
+                    return title;
+                }
+
+                @Override
+                protected Button negative() {
+                    return negative;
+                }
+
+                @Override
+                protected Button neutral() {
+                    return neutral;
+                }
+
+                @Override
+                protected Button positive() {
+                    return positive;
+                }
+
+                @Override
+                protected boolean darkMode() {
+                    return darkMode;
+                }
+
+                @Override
+                protected boolean cancelable() {
+                    return cancelable;
+                }
+            };
+        }
+
+        public Dialog show() {
+            Dialog dialog = create();
+            dialog.show();
+            return dialog;
+        }
     }
 }

@@ -19,3 +19,11 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-dontoptimize
+-keeppackagenames org.ituns.android.dialog
+
+-keep class org.ituns.android.dialog.** { *; }
+
+-keep class org.ituns.android.dialog.R{ *; }
+-keep class org.ituns.android.dialog.R$* { public static <fields>; }

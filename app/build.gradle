@@ -30,9 +30,11 @@ dependencies {
     androidTestImplementation "androidx.test:runner:${RUNNER_VERSION}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${ESPRESSO_VERSION}"
 
-    implementation project(path: ':dialog')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.google.android.material:material:${MATERIAL_VERSION}"
     implementation "androidx.appcompat:appcompat:${APPCOMPAT_VERSION}"
     implementation "androidx.constraintlayout:constraintlayout:${CONSTRAINT_VERSION}"
+
+//    implementation project(":dialog")
+    implementation "org.ituns.android:dialog:${ANDROID_DIALOG_VERSION}"
 }

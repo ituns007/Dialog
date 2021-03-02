@@ -19,9 +19,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Show Loading"
+        android:text="Show Progress"
         android:textColor="#FFFFFF"
-        android:onClick="clickLoading"
+        android:onClick="clickProgress"
         android:background="@color/purple_500"/>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -31,5 +31,14 @@
         android:text="Show Confirm"
         android:textColor="#FFFFFF"
         android:onClick="clickConfirm"
+        android:background="@color/purple_500"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Show Input"
+        android:textColor="#FFFFFF"
+        android:onClick="clickInput"
         android:background="@color/purple_500"/>
 </LinearLayout>

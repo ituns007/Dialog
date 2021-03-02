@@ -9,16 +9,17 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.FragmentActivity;
 
 import java.lang.ref.WeakReference;
 
-public abstract class ConfirmDialog extends DialogCreator {
+public class InputDialog extends DialogCreator {
     private final WeakReference<DialogProxy> mProxy;
     private final WeakReference<FragmentActivity> mActivity;
 
-    public ConfirmDialog(FragmentActivity activity) {
+    public InputDialog(FragmentActivity activity) {
         mProxy = new WeakReference<>(new DialogProxy(this));
         mActivity = new WeakReference<>(activity);
     }
@@ -30,13 +31,12 @@ public abstract class ConfirmDialog extends DialogCreator {
             return null;
         }
 
-        ConfirmStyle style = style();
+        InputStyle style = style();
         if(style == null) {
-            style = ConfirmStyle.DEFAULT;
+            style = InputStyle.DEFAULT;
         }
 
         String title = title();
-        String content = content();
         Button negative = negative();
         Button neutral = neutral();
         Button positive = positive();
@@ -48,7 +48,7 @@ public abstract class ConfirmDialog extends DialogCreator {
         View vrLineView = rootView.findViewById(R.id.line_vr);
         LinearLayout actionLayout = rootView.findViewById(R.id.action);
         AppCompatTextView titleView = rootView.findViewById(R.id.title);
-        AppCompatTextView contentView = rootView.findViewById(R.id.content);
+        AppCompatEditText inputView = rootView.findViewById(R.id.input);
         AppCompatTextView negativeBtn = rootView.findViewById(R.id.btn_negative);
         AppCompatTextView neutralBtn = rootView.findViewById(R.id.btn_neutral);
         AppCompatTextView positiveBtn = rootView.findViewById(R.id.btn_positive);
@@ -69,10 +69,7 @@ public abstract class ConfirmDialog extends DialogCreator {
             htLineView.setBackgroundResource(style.lineDrawable());
         }
 
-        // setup content view
-        if(contentView != null) {
-            contentView.setText(content);
-        }
+        // setup input view
 
         // calculate action weight
         int weight = 0;
@@ -112,9 +109,9 @@ public abstract class ConfirmDialog extends DialogCreator {
             negativeBtn.setVisibility(negativeVisible);
             negativeBtn.setOnClickListener(v -> {
                 dismiss();
-                Callback callback = buttonCallback(negative);
-                if(callback != null) {
-                    callback.onClick(this);
+                Watcher watcher = buttonWatcher(negative);
+                if(watcher != null) {
+                    watcher.onText(this, inputText(inputView));
                 }
             });
         }
@@ -149,9 +146,9 @@ public abstract class ConfirmDialog extends DialogCreator {
             neutralBtn.setVisibility(neutralVisible);
             neutralBtn.setOnClickListener(v -> {
                 dismiss();
-                Callback callback = buttonCallback(neutral);
-                if(callback != null) {
-                    callback.onClick(this);
+                Watcher watcher = buttonWatcher(neutral);
+                if(watcher != null) {
+                    watcher.onText(this, inputText(inputView));
                 }
             });
         }
@@ -180,9 +177,9 @@ public abstract class ConfirmDialog extends DialogCreator {
             positiveBtn.setVisibility(positiveVisible);
             positiveBtn.setOnClickListener(v -> {
                 dismiss();
-                Callback callback = buttonCallback(positive);
-                if(callback != null) {
-                    callback.onClick(this);
+                Watcher watcher = buttonWatcher(positive);
+                if(watcher != null) {
+                    watcher.onText(this, inputText(inputView));
                 }
             });
         }
@@ -195,6 +192,13 @@ public abstract class ConfirmDialog extends DialogCreator {
         return dialog;
     }
 
+    private String inputText(AppCompatEditText inputView) {
+        if(inputView != null) {
+            return inputView.getText().toString();
+        }
+        return "";
+    }
+
     private String buttonText(Button button) {
         if(button != null) {
             return button.text();
@@ -202,22 +206,18 @@ public abstract class ConfirmDialog extends DialogCreator {
         return null;
     }
 
-    private Callback buttonCallback(Button button) {
+    private Watcher buttonWatcher(Button button) {
         if(button != null) {
-            return button.callback();
+            return button.watcher();
         }
         return null;
     }
 
-    protected ConfirmStyle style() {
-        return ConfirmStyle.DEFAULT;
+    protected InputStyle style() {
+        return InputStyle.DEFAULT;
     }
 
     protected String title() {
-        return null;
-    }
-
-    protected String content() {
         return null;
     }
 
@@ -254,7 +254,7 @@ public abstract class ConfirmDialog extends DialogCreator {
         }
 
         proxy.setCancelable(cancelable());
-        proxy.show(activity.getSupportFragmentManager(), "confirm");
+        proxy.show(activity.getSupportFragmentManager(), "input");
     }
 
     @Override

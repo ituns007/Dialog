@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 
-import org.ituns.android.dialog.Action;
+import org.ituns.android.dialog.Button;
 import org.ituns.android.dialog.Dialog;
 import org.ituns.android.dialog.ProgressStyle;
 import org.ituns.android.dialog.ToastStyle;
+import org.ituns.android.dialog.Watcher;
 
 public class MainActivity extends AppCompatActivity {
     private Handler handler;
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
-    public void clickLoading(View view) {
+    public void clickProgress(View view) {
         Dialog dialog = Dialog.progress(this)
                 .style(ProgressStyle.DEFAULT)
                 .text("Please Wait...")
@@ -42,12 +44,20 @@ public class MainActivity extends AppCompatActivity {
         Dialog dialog = Dialog.confirm(this)
                 .title("New Title")
                 .content("New Content")
-                .negative(Action.with("Negative"))
-                .neutral(Action.with("Neutral"))
-                .positive(Action.with("Positive"))
+                .negative(Button.with("Negative"))
+                .neutral(Button.with("Neutral"))
+                .positive(Button.with("Positive"))
                 .darkMode(false)
                 .cancelable(false)
                 .show();
 //        handler.postDelayed(dialog::dismiss, 5000);
+    }
+
+    public void clickInput(View view) {
+        Dialog dialog = Dialog.input(this)
+                .title("Input Title")
+                .negative(Button.with("Negative", (dialog1, text) -> Log.e("wangxiulong", "Text:" + text)))
+                .darkMode(true)
+                .show();
     }
 }
