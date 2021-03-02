@@ -2,10 +2,11 @@ apply plugin: 'com.android.library'
 apply from: "publish.gradle"
 
 android {
-    compileSdkVersion COMPILE_SDK_VERSION as int
+    compileSdkVersion APPLICATION_SDK_COMPILE as int
+    buildToolsVersion APPLICATION_BUILD_TOOLS
     defaultConfig {
-        minSdkVersion MIN_SDK_VERSION as int
-        targetSdkVersion TARGET_SDK_VERSION as int
+        minSdkVersion APPLICATION_SDK_MIN as int
+        targetSdkVersion APPLICATION_SDK_TARGET as int
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

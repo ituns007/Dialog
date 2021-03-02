@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="ituns_bkg_dark">#131015</color>
+    <color name="ituns_bkg_light">#FFFFFF</color>
+    <color name="ituns_btn_dark_normal">#131015</color>
+    <color name="ituns_btn_dark_pressed">#3b353c</color>
+    <color name="ituns_btn_light_normal">#FFFFFF</color>
+    <color name="ituns_btn_light_pressed">#f5f5f5</color>
+    <color name="ituns_line_dark">#80FFFFFF</color>
+    <color name="ituns_line_light">#33000000</color>
+    <color name="ituns_text_dark">#DEFFFFFF</color>
+    <color name="ituns_text_light">#DE000000</color>
+</resources>

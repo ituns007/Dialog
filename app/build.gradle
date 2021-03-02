@@ -1,11 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion COMPILE_SDK_VERSION as int
+    compileSdkVersion APPLICATION_SDK_COMPILE as int
+    buildToolsVersion APPLICATION_BUILD_TOOLS
     defaultConfig {
         applicationId "${APPLICATION_ID}"
-        minSdkVersion MIN_SDK_VERSION as int
-        targetSdkVersion TARGET_SDK_VERSION as int
+        minSdkVersion APPLICATION_SDK_MIN as int
+        targetSdkVersion APPLICATION_SDK_TARGET as int
         versionCode APPLICATION_VERSION_CODE as int
         versionName "${APPLICATION_VERSION_NAME}"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -29,7 +30,9 @@ dependencies {
     androidTestImplementation "androidx.test:runner:${RUNNER_VERSION}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${ESPRESSO_VERSION}"
 
+    implementation project(path: ':dialog')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.google.android.material:material:${MATERIAL_VERSION}"
     implementation "androidx.appcompat:appcompat:${APPCOMPAT_VERSION}"
     implementation "androidx.constraintlayout:constraintlayout:${CONSTRAINT_VERSION}"
 }

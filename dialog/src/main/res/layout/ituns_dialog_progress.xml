@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="125dp"
+    android:minHeight="125dp"
+    android:padding="15dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/ituns_selector_bkg">
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:indeterminateTint="@color/ituns_color_text"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:maxLines="3"
+        android:textColor="@color/ituns_color_text"
+        android:textSize="14sp" />
+</LinearLayout>
